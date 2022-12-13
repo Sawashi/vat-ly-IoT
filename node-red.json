@@ -1,36 +1,10 @@
 [
     {
-        "id": "656d972c931fe061",
-        "type": "tab",
-        "label": "Flow 2",
-        "disabled": false,
-        "info": "",
-        "env": []
-    },
-    {
-        "id": "2f72c72c4ce46df1",
-        "type": "ui_text",
-        "z": "656d972c931fe061",
-        "group": "fb0b368506504bdd",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "name": "",
-        "label": "Control center",
-        "format": "{{msg.payload}}",
-        "layout": "row-center",
-        "className": "logo",
-        "x": 240,
-        "y": 80,
-        "wires": [],
-        "info": ".logo{\r\n    color: red;\r\n}"
-    },
-    {
-        "id": "1ff988be732623d7",
+        "id": "ae78c102e6cf2fd7",
         "type": "mqtt in",
-        "z": "656d972c931fe061",
+        "z": "efc94886e287f03e",
         "name": "",
-        "topic": "20127542/disN",
+        "topic": "20127542/humi",
         "qos": "2",
         "datatype": "auto-detect",
         "broker": "679bc69b1636e00c",
@@ -39,84 +13,13 @@
         "rh": 0,
         "inputs": 0,
         "x": 240,
-        "y": 280,
+        "y": 580,
         "wires": [
             [
-                "ac023d288ec58860"
+                "07d6d88cdd5f6b63",
+                "26a9885e3a93e420"
             ]
         ]
-    },
-    {
-        "id": "ac023d288ec58860",
-        "type": "ui_text",
-        "z": "656d972c931fe061",
-        "group": "fb0b368506504bdd",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "name": "",
-        "label": "Distance now: ",
-        "format": "{{msg.payload}}",
-        "layout": "row-left",
-        "className": "",
-        "x": 420,
-        "y": 280,
-        "wires": []
-    },
-    {
-        "id": "5ea264073e1e5e9d",
-        "type": "mqtt out",
-        "z": "656d972c931fe061",
-        "name": "",
-        "topic": "20127542/text",
-        "qos": "",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "679bc69b1636e00c",
-        "x": 680,
-        "y": 180,
-        "wires": []
-    },
-    {
-        "id": "420f15db7a6ddb1a",
-        "type": "ui_text_input",
-        "z": "656d972c931fe061",
-        "name": "",
-        "label": "Enter number to change distance",
-        "tooltip": "",
-        "group": "fb0b368506504bdd",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "mode": "text",
-        "delay": "0",
-        "topic": "topic",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "msg",
-        "x": 300,
-        "y": 180,
-        "wires": [
-            [
-                "5ea264073e1e5e9d"
-            ]
-        ]
-    },
-    {
-        "id": "fb0b368506504bdd",
-        "type": "ui_group",
-        "name": "Welcome",
-        "tab": "7d4945d81a00d7c4",
-        "order": 1,
-        "disp": false,
-        "width": "28",
-        "collapse": false,
-        "className": ""
     },
     {
         "id": "679bc69b1636e00c",
@@ -144,13 +47,5 @@
         "willMsg": {},
         "userProps": "",
         "sessionExpiry": ""
-    },
-    {
-        "id": "7d4945d81a00d7c4",
-        "type": "ui_tab",
-        "name": "Home",
-        "icon": "dashboard",
-        "disabled": false,
-        "hidden": false
     }
 ]

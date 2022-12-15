@@ -301,8 +301,8 @@
         "name": "Get History",
         "collection": "history",
         "operation": "find",
-        "x": 290,
-        "y": 720,
+        "x": 1210,
+        "y": 380,
         "wires": [
             []
         ]
@@ -626,15 +626,157 @@
         "type": "mongodb out",
         "z": "efc94886e287f03e",
         "mongodb": "9e9256af010f8904",
-        "name": "Save humidity",
+        "name": "Save History",
         "collection": "history",
         "payonly": false,
         "upsert": false,
         "multi": false,
         "operation": "store",
-        "x": 520,
-        "y": 580,
+        "x": 1250,
+        "y": 500,
         "wires": []
+    },
+    {
+        "id": "a2be90cea1e4f4a9",
+        "type": "mqtt in",
+        "z": "efc94886e287f03e",
+        "name": "",
+        "topic": "20127542/allData",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "679bc69b1636e00c",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 820,
+        "y": 500,
+        "wires": [
+            [
+                "a5cfba2cee87d870"
+            ]
+        ]
+    },
+    {
+        "id": "a5cfba2cee87d870",
+        "type": "function",
+        "z": "efc94886e287f03e",
+        "name": "Format Notification",
+        "func": "const data = msg.payload.split(\",\")\n\nconst history = {\n    distance: data[0],\n    temp: data[1],\n    humi: data[2],\n    createdAt: new Date()\n}\n\nmsg.payload = history\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 970,
+        "y": 580,
+        "wires": [
+            [
+                "87177603370c0974",
+                "c77b9e274635e88d",
+                "58caa60e44e6c28c"
+            ]
+        ]
+    },
+    {
+        "id": "87177603370c0974",
+        "type": "debug",
+        "z": "efc94886e287f03e",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1240,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "c77b9e274635e88d",
+        "type": "delay",
+        "z": "efc94886e287f03e",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1080,
+        "y": 500,
+        "wires": [
+            [
+                "18bf3f21da57f221"
+            ]
+        ]
+    },
+    {
+        "id": "311332ae836bdfff",
+        "type": "http request",
+        "z": "efc94886e287f03e",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://maker.ifttt.com/trigger/random_gaulet/with/key/mySX-kW3d2X7Q7nvnZGsG?value1={{payload}}",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1030,
+        "y": 720,
+        "wires": [
+            [
+                "93ce4c98191acf8a"
+            ]
+        ]
+    },
+    {
+        "id": "93ce4c98191acf8a",
+        "type": "debug",
+        "z": "efc94886e287f03e",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1220,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "58caa60e44e6c28c",
+        "type": "function",
+        "z": "efc94886e287f03e",
+        "name": "function 2",
+        "func": "msg.payload = \"Distance: \"+ msg.payload.distance\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 900,
+        "y": 660,
+        "wires": [
+            [
+                "311332ae836bdfff"
+            ]
+        ]
     },
     {
         "id": "fb0b368506504bdd",
@@ -701,7 +843,7 @@
         "type": "mongodb",
         "hostname": "iot.atoib9b.mongodb.net",
         "topology": "dnscluster",
-        "connectOptions": "",
+        "connectOptions": "retryWrites=true&w=majority",
         "port": "27017",
         "db": "ESP32",
         "name": "Test"

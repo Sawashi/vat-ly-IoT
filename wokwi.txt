@@ -1,5 +1,6 @@
 #include <WiFi.h>
 #include <PubSubClient.h>
+#include "DHTesp.h"
 
 const char* ssid = "Wokwi-GUEST";
 const char* password = "";
@@ -13,6 +14,7 @@ int port = 1883;
 int trigPin = 15;
 int echoPin = 2;
 int distanceToAlarm=100;
+DHTesp dhtSensor;
 
 void wifiConnect() {
   WiFi.begin(ssid, password);
@@ -41,6 +43,7 @@ void mqttReconnect() {
 }
 
 void setup() {
+  dhtSensor.setup(23, DHTesp::DHT22);
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
   Serial.begin(9600);
@@ -93,12 +96,36 @@ void loop() {
   //Get distance and send to node red
   long distanceR=getDistance();
   char dist[50];
-  sprintf(dist, "{%d}",distanceR);
+  char temp[50];
+  char humi[50];
+  char allData[100];
+
+  sprintf(dist, "%d",distanceR);
   client.publish("20127542/disN", dist);
-  Serial.println(distanceR);
+  Serial.println("Distance: " + String(distanceR));
   if(distanceR<distanceToAlarm){
     Serial.println("Trom kia !!!!!");
   }
+
+  //Send Temperature and Humidity
+  TempAndHumidity data = dhtSensor.getTempAndHumidity();
+  Serial.println("Temperature: " + String(data.temperature, 2) + "℃");
+  sprintf(temp, "%.2f",data.temperature);
+  client.publish("20127542/temp", temp);
+
+  Serial.println("Humidity: " + String(data.humidity, 1) + "%");
+  sprintf(humi, "%.2f",data.humidity);
+  client.publish("20127542/humi", humi);
+
+  strcpy(allData, dist);
+  strcat(allData, ", ");
+  strcat(allData, temp);
+  strcat(allData, ", ");
+  strcat(allData, humi);
+  Serial.println(allData);
+  client.publish("20127542/allData", allData);
+
+  Serial.println("---");
 
 
   delay(1000);

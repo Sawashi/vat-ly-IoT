@@ -1,0 +1,1263 @@
+[
+    {
+        "id": "efc94886e287f03e",
+        "type": "tab",
+        "label": "Main",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b49ace97e546e051",
+        "type": "ui_text",
+        "z": "efc94886e287f03e",
+        "group": "fb0b368506504bdd",
+        "order": 1,
+        "width": 12,
+        "height": 1,
+        "name": "",
+        "label": "Control center",
+        "format": "{{msg.payload}}",
+        "layout": "row-center",
+        "className": "logo",
+        "x": 240,
+        "y": 80,
+        "wires": [],
+        "info": ".logo{\r\n    color: red;\r\n}"
+    },
+    {
+        "id": "b6ae375f1afa5e77",
+        "type": "mqtt in",
+        "z": "efc94886e287f03e",
+        "name": "",
+        "topic": "20127542/disN",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "679bc69b1636e00c",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 240,
+        "y": 280,
+        "wires": [
+            [
+                "02fab29ee8fdf7e6"
+            ]
+        ]
+    },
+    {
+        "id": "02fab29ee8fdf7e6",
+        "type": "ui_text",
+        "z": "efc94886e287f03e",
+        "group": "fb0b368506504bdd",
+        "order": 5,
+        "width": 12,
+        "height": 1,
+        "name": "",
+        "label": "Distance now: ",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 520,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "f317e7fdfcdd89d4",
+        "type": "mqtt out",
+        "z": "efc94886e287f03e",
+        "name": "",
+        "topic": "20127542/text",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "679bc69b1636e00c",
+        "x": 700,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "638a31e8fa7113eb",
+        "type": "ui_text_input",
+        "z": "efc94886e287f03e",
+        "name": "",
+        "label": "Enter number to change distance",
+        "tooltip": "",
+        "group": "fb0b368506504bdd",
+        "order": 3,
+        "width": 12,
+        "height": 1,
+        "passthru": true,
+        "mode": "text",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 300,
+        "y": 160,
+        "wires": [
+            [
+                "f317e7fdfcdd89d4"
+            ]
+        ]
+    },
+    {
+        "id": "c36603057e149bd0",
+        "type": "mqtt in",
+        "z": "efc94886e287f03e",
+        "name": "",
+        "topic": "20127542/temp",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "679bc69b1636e00c",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 240,
+        "y": 440,
+        "wires": [
+            [
+                "ec66bf452a4490f1",
+                "ff1fbc7cd458e794"
+            ]
+        ]
+    },
+    {
+        "id": "ae78c102e6cf2fd7",
+        "type": "mqtt in",
+        "z": "efc94886e287f03e",
+        "name": "",
+        "topic": "20127542/humi",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "679bc69b1636e00c",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 240,
+        "y": 580,
+        "wires": [
+            [
+                "07d6d88cdd5f6b63",
+                "26a9885e3a93e420"
+            ]
+        ]
+    },
+    {
+        "id": "ec66bf452a4490f1",
+        "type": "ui_gauge",
+        "z": "efc94886e287f03e",
+        "name": "",
+        "group": "3e69632b2075c777",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperature",
+        "label": "℃",
+        "format": "{{msg.payload}}",
+        "min": "-40",
+        "max": "80",
+        "colors": [
+            "#90e8ea",
+            "#41e335",
+            "#ca3838"
+        ],
+        "seg1": "0",
+        "seg2": "40",
+        "className": "",
+        "x": 530,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "07d6d88cdd5f6b63",
+        "type": "ui_chart",
+        "z": "efc94886e287f03e",
+        "name": "",
+        "group": "389b8617e091d927",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "label": "Humidity",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 500,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ff1fbc7cd458e794",
+        "type": "ui_chart",
+        "z": "efc94886e287f03e",
+        "name": "",
+        "group": "389b8617e091d927",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "Temperature",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "-40",
+        "ymax": "80",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#ff0000",
+            "#fa0000",
+            "#ff0000",
+            "#ff0000",
+            "#ff0000",
+            "#ff0000",
+            "#ff0000",
+            "#ff0000",
+            "#ff0000"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 530,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "26a9885e3a93e420",
+        "type": "ui_gauge",
+        "z": "efc94886e287f03e",
+        "name": "",
+        "group": "3e69632b2075c777",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Humidity",
+        "label": "%",
+        "format": "{{msg.payload}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#8ed0e1",
+            "#50b9ce",
+            "#339799"
+        ],
+        "seg1": "25",
+        "seg2": "75",
+        "className": "",
+        "x": 500,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "96151a65ecb2427d",
+        "type": "mongodb in",
+        "z": "efc94886e287f03e",
+        "mongodb": "9e9256af010f8904",
+        "name": "Get History",
+        "collection": "history",
+        "operation": "find",
+        "x": 990,
+        "y": 380,
+        "wires": [
+            [
+                "f84dcdfca0f28d97"
+            ]
+        ]
+    },
+    {
+        "id": "3733d0cb1fa704e6",
+        "type": "mongodb in",
+        "z": "efc94886e287f03e",
+        "mongodb": "9e9256af010f8904",
+        "name": "Get Account",
+        "collection": "user",
+        "operation": "find",
+        "x": 570,
+        "y": 860,
+        "wires": [
+            [
+                "f881cafc9ad5490a"
+            ]
+        ]
+    },
+    {
+        "id": "357717b1775ef544",
+        "type": "ui_form",
+        "z": "efc94886e287f03e",
+        "name": "",
+        "label": "Login Form",
+        "group": "566b1bad2ef37249",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Email",
+                "value": "email",
+                "type": "email",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Password",
+                "value": "password",
+                "type": "password",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "email": "",
+            "password": ""
+        },
+        "payload": "",
+        "submit": "Login",
+        "cancel": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "splitLayout": "",
+        "className": "",
+        "x": 230,
+        "y": 860,
+        "wires": [
+            [
+                "c44f9ec2a6783583"
+            ]
+        ]
+    },
+    {
+        "id": "c44f9ec2a6783583",
+        "type": "function",
+        "z": "efc94886e287f03e",
+        "name": "function 1",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 860,
+        "wires": [
+            [
+                "3733d0cb1fa704e6"
+            ]
+        ]
+    },
+    {
+        "id": "f881cafc9ad5490a",
+        "type": "debug",
+        "z": "efc94886e287f03e",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "5647dad0cd5aebf2",
+        "type": "mongodb out",
+        "z": "efc94886e287f03e",
+        "mongodb": "9e9256af010f8904",
+        "name": "Create Account",
+        "collection": "user",
+        "payonly": true,
+        "upsert": false,
+        "multi": false,
+        "operation": "insert",
+        "x": 940,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "ee5438c74f346358",
+        "type": "ui_form",
+        "z": "efc94886e287f03e",
+        "name": "",
+        "label": "Regisrer Form",
+        "group": "7089d654ec723a4b",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Email",
+                "value": "email",
+                "type": "email",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Password",
+                "value": "password",
+                "type": "password",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "email": "",
+            "password": ""
+        },
+        "payload": "",
+        "submit": "Login",
+        "cancel": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "splitLayout": "",
+        "className": "",
+        "x": 160,
+        "y": 960,
+        "wires": [
+            [
+                "10454b15c3b0b323"
+            ]
+        ]
+    },
+    {
+        "id": "039588d767c95f81",
+        "type": "mongodb in",
+        "z": "efc94886e287f03e",
+        "mongodb": "9e9256af010f8904",
+        "name": "Get Account",
+        "collection": "user",
+        "operation": "find",
+        "x": 410,
+        "y": 960,
+        "wires": [
+            [
+                "0b6d75028dfede0f"
+            ]
+        ]
+    },
+    {
+        "id": "0d3019ce4848bece",
+        "type": "switch",
+        "z": "efc94886e287f03e",
+        "name": "",
+        "property": "route",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "not_exist",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "is_exist",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 610,
+        "y": 960,
+        "wires": [
+            [
+                "c90913e1860b3ce4"
+            ],
+            [
+                "ac459f1e802cbdbf",
+                "c2fbb9d3b38d4550"
+            ]
+        ]
+    },
+    {
+        "id": "ac459f1e802cbdbf",
+        "type": "ui_text",
+        "z": "efc94886e287f03e",
+        "group": "7089d654ec723a4b",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Status",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 830,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "0b6d75028dfede0f",
+        "type": "function",
+        "z": "efc94886e287f03e",
+        "name": "Check account",
+        "func": "const user = msg.payload[0]\n\nif (!user || !user.email){\n    msg.route = \"not_exist\"\n    msg.payload = user\n}\nelse {\n    msg.route = \"is_exist\"\n    msg.payload = \"Account is existed\"\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 1060,
+        "wires": [
+            [
+                "0d3019ce4848bece"
+            ]
+        ]
+    },
+    {
+        "id": "c2fbb9d3b38d4550",
+        "type": "debug",
+        "z": "efc94886e287f03e",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 840,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "10454b15c3b0b323",
+        "type": "function",
+        "z": "efc94886e287f03e",
+        "name": "Store form",
+        "func": "flow.set(\"user\", msg.payload)\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 1040,
+        "wires": [
+            [
+                "039588d767c95f81"
+            ]
+        ]
+    },
+    {
+        "id": "c90913e1860b3ce4",
+        "type": "function",
+        "z": "efc94886e287f03e",
+        "name": "Get Form",
+        "func": "const user = flow.get(\"user\")\n\nmsg.payload = user\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 920,
+        "wires": [
+            [
+                "5647dad0cd5aebf2",
+                "fd380f5e70951f82"
+            ]
+        ]
+    },
+    {
+        "id": "fd380f5e70951f82",
+        "type": "debug",
+        "z": "efc94886e287f03e",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "18bf3f21da57f221",
+        "type": "mongodb out",
+        "z": "efc94886e287f03e",
+        "mongodb": "9e9256af010f8904",
+        "name": "Save History",
+        "collection": "history",
+        "payonly": false,
+        "upsert": false,
+        "multi": false,
+        "operation": "store",
+        "x": 1250,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "a2be90cea1e4f4a9",
+        "type": "mqtt in",
+        "z": "efc94886e287f03e",
+        "name": "",
+        "topic": "20127542/allData",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "679bc69b1636e00c",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 820,
+        "y": 500,
+        "wires": [
+            [
+                "a5cfba2cee87d870",
+                "96151a65ecb2427d"
+            ]
+        ]
+    },
+    {
+        "id": "a5cfba2cee87d870",
+        "type": "function",
+        "z": "efc94886e287f03e",
+        "name": "Format Notification",
+        "func": "const data = msg.payload.split(\",\")\n\nconst history = {\n    distance: data[0],\n    temp: data[1],\n    humi: data[2],\n    createdAt: new Date()\n}\n\nmsg.payload = history\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 970,
+        "y": 580,
+        "wires": [
+            [
+                "87177603370c0974",
+                "c77b9e274635e88d",
+                "58caa60e44e6c28c"
+            ]
+        ]
+    },
+    {
+        "id": "87177603370c0974",
+        "type": "debug",
+        "z": "efc94886e287f03e",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1240,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "c77b9e274635e88d",
+        "type": "delay",
+        "z": "efc94886e287f03e",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1080,
+        "y": 500,
+        "wires": [
+            [
+                "18bf3f21da57f221"
+            ]
+        ]
+    },
+    {
+        "id": "311332ae836bdfff",
+        "type": "http request",
+        "z": "efc94886e287f03e",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://maker.ifttt.com/trigger/random_gaulet/with/key/mySX-kW3d2X7Q7nvnZGsG?value1={{payload}}",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1030,
+        "y": 720,
+        "wires": [
+            [
+                "93ce4c98191acf8a"
+            ]
+        ]
+    },
+    {
+        "id": "93ce4c98191acf8a",
+        "type": "debug",
+        "z": "efc94886e287f03e",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1220,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "58caa60e44e6c28c",
+        "type": "function",
+        "z": "efc94886e287f03e",
+        "name": "Format before send notification",
+        "func": "msg.payload = \"Distance: \"+ msg.payload.distance\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 970,
+        "y": 660,
+        "wires": [
+            [
+                "311332ae836bdfff"
+            ]
+        ]
+    },
+    {
+        "id": "0e602652ebfb2323",
+        "type": "function",
+        "z": "efc94886e287f03e",
+        "name": "Format Weather",
+        "func": "msg.payload = msg.payload.main.temp\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1100,
+        "y": 40,
+        "wires": [
+            [
+                "0cf00fc4038cf7aa",
+                "11f9b7dfae35329d"
+            ]
+        ]
+    },
+    {
+        "id": "4aea0a7c3844beac",
+        "type": "http request",
+        "z": "efc94886e287f03e",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://api.openweathermap.org/data/2.5/weather?id={{payload}}&appid=2af9fe9d0c568f17ceb9d136fa6e9b3f&units=metric",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 650,
+        "y": 60,
+        "wires": [
+            [
+                "0fd2230b3f82a997"
+            ]
+        ]
+    },
+    {
+        "id": "0cf00fc4038cf7aa",
+        "type": "ui_gauge",
+        "z": "efc94886e287f03e",
+        "name": "",
+        "group": "fb0b368506504bdd",
+        "order": 12,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Current Weather",
+        "label": "℃",
+        "format": "{{msg.payload}}",
+        "min": "-40",
+        "max": "80",
+        "colors": [
+            "#90e8ea",
+            "#41e335",
+            "#ca3838"
+        ],
+        "seg1": "0",
+        "seg2": "40",
+        "className": "",
+        "x": 1300,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "e19bd94dea3289ec",
+        "type": "ui_dropdown",
+        "z": "efc94886e287f03e",
+        "name": "",
+        "label": "Select your city",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "fb0b368506504bdd",
+        "order": 10,
+        "width": 12,
+        "height": 1,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "Ho Chi Minh",
+                "value": "1580578",
+                "type": "str"
+            },
+            {
+                "label": "Ha Noi",
+                "value": "1581130",
+                "type": "str"
+            },
+            {
+                "label": "Binh Thuan",
+                "value": "1581882",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "className": "",
+        "x": 480,
+        "y": 60,
+        "wires": [
+            [
+                "4aea0a7c3844beac"
+            ]
+        ]
+    },
+    {
+        "id": "11f9b7dfae35329d",
+        "type": "debug",
+        "z": "efc94886e287f03e",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1280,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "0fd2230b3f82a997",
+        "type": "json",
+        "z": "efc94886e287f03e",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 850,
+        "y": 60,
+        "wires": [
+            [
+                "0e602652ebfb2323"
+            ]
+        ]
+    },
+    {
+        "id": "a8faf8dca71937c2",
+        "type": "ui_template",
+        "z": "efc94886e287f03e",
+        "group": "fb0b368506504bdd",
+        "name": "",
+        "order": 12,
+        "width": 0,
+        "height": 0,
+        "format": "<div>\n    <li ng-repeat=\"history in msg.payload\">\n        <div>\n            <h3>Distance</h3>\n            <p>{{history.distance}}</p>\n        </div>\n        <div>\n            <h3>Temparature</h3>\n            <p>{{history.temp}}</p>\n        </div>\n        <div>\n            <h3>Humidity</h3>\n            <p>{{history.humi}}</p>\n        </div>\n    </li>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1280,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "48fd444fd558caa2",
+        "type": "debug",
+        "z": "efc94886e287f03e",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1160,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "f84dcdfca0f28d97",
+        "type": "function",
+        "z": "efc94886e287f03e",
+        "name": "Format history",
+        "func": "\nmsg.payload = msg.payload.map(history=>history.payload)\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1100,
+        "y": 340,
+        "wires": [
+            [
+                "a8faf8dca71937c2",
+                "48fd444fd558caa2",
+                "1cbdb5122e0fb0b5"
+            ]
+        ]
+    },
+    {
+        "id": "1cbdb5122e0fb0b5",
+        "type": "ui_table",
+        "z": "efc94886e287f03e",
+        "group": "fb0b368506504bdd",
+        "name": "History",
+        "order": 13,
+        "width": 0,
+        "height": 0,
+        "columns": [
+            {
+                "field": "distance",
+                "title": "Distance",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "temp",
+                "title": "Temparature",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "humi",
+                "title": "Humidity",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 0,
+        "cts": false,
+        "x": 1280,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "beadc97aa397758f",
+        "type": "ui_spacer",
+        "z": "efc94886e287f03e",
+        "name": "spacer",
+        "group": "fb0b368506504bdd",
+        "order": 2,
+        "width": 9,
+        "height": 1
+    },
+    {
+        "id": "3c72c98dc08893d3",
+        "type": "ui_spacer",
+        "z": "efc94886e287f03e",
+        "name": "spacer",
+        "group": "fb0b368506504bdd",
+        "order": 4,
+        "width": 9,
+        "height": 1
+    },
+    {
+        "id": "71a0d80f627d4b75",
+        "type": "ui_spacer",
+        "z": "efc94886e287f03e",
+        "name": "spacer",
+        "group": "fb0b368506504bdd",
+        "order": 6,
+        "width": 9,
+        "height": 1
+    },
+    {
+        "id": "9be2454c1ff79a91",
+        "type": "ui_spacer",
+        "z": "efc94886e287f03e",
+        "name": "spacer",
+        "group": "fb0b368506504bdd",
+        "order": 7,
+        "width": 21,
+        "height": 1
+    },
+    {
+        "id": "d7396ffb02777f77",
+        "type": "ui_spacer",
+        "z": "efc94886e287f03e",
+        "name": "spacer",
+        "group": "fb0b368506504bdd",
+        "order": 8,
+        "width": 21,
+        "height": 1
+    },
+    {
+        "id": "2139b7ac11fec7f6",
+        "type": "ui_spacer",
+        "z": "efc94886e287f03e",
+        "name": "spacer",
+        "group": "fb0b368506504bdd",
+        "order": 9,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "7addc00f28a9af5e",
+        "type": "ui_spacer",
+        "z": "efc94886e287f03e",
+        "name": "spacer",
+        "group": "fb0b368506504bdd",
+        "order": 11,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "8e966da8b98f95cb",
+        "type": "ui_spacer",
+        "z": "efc94886e287f03e",
+        "name": "spacer",
+        "group": "3e69632b2075c777",
+        "order": 2,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "355d5a6609a47799",
+        "type": "ui_spacer",
+        "z": "efc94886e287f03e",
+        "name": "spacer",
+        "group": "3e69632b2075c777",
+        "order": 3,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "dd5a1328ab65b862",
+        "type": "ui_spacer",
+        "z": "efc94886e287f03e",
+        "name": "spacer",
+        "group": "3e69632b2075c777",
+        "order": 4,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "da754c2561ccaca8",
+        "type": "ui_spacer",
+        "z": "efc94886e287f03e",
+        "name": "spacer",
+        "group": "3e69632b2075c777",
+        "order": 5,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "7179abac5151ce2b",
+        "type": "ui_spacer",
+        "z": "efc94886e287f03e",
+        "name": "spacer",
+        "group": "3e69632b2075c777",
+        "order": 6,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "fb0b368506504bdd",
+        "type": "ui_group",
+        "name": "Welcome",
+        "tab": "7d4945d81a00d7c4",
+        "order": 1,
+        "disp": false,
+        "width": 21,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "679bc69b1636e00c",
+        "type": "mqtt-broker",
+        "name": "broker.mqtt-dashboard.com",
+        "broker": "broker.mqtt-dashboard.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "3e69632b2075c777",
+        "type": "ui_group",
+        "name": "DHT22",
+        "tab": "7d4945d81a00d7c4",
+        "order": 2,
+        "disp": true,
+        "width": 4,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "389b8617e091d927",
+        "type": "ui_group",
+        "name": "Chart",
+        "tab": "7d4945d81a00d7c4",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "9e9256af010f8904",
+        "type": "mongodb",
+        "hostname": "iot.atoib9b.mongodb.net",
+        "topology": "dnscluster",
+        "connectOptions": "retryWrites=true&w=majority",
+        "port": "27017",
+        "db": "ESP32",
+        "name": "Test"
+    },
+    {
+        "id": "566b1bad2ef37249",
+        "type": "ui_group",
+        "name": "Login",
+        "tab": "5935d88b531e7a0c",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "7089d654ec723a4b",
+        "type": "ui_group",
+        "name": "Register",
+        "tab": "5935d88b531e7a0c",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "7d4945d81a00d7c4",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "home",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "5935d88b531e7a0c",
+        "type": "ui_tab",
+        "name": "Authentication",
+        "icon": "people",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    }
+]
